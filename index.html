@@ -5,11 +5,27 @@
     <title></title>
   </head>
   <body>
+    <button type="button" name="connect_button" id="connect_button">Connect_button</button>
+    <button type="button" name="disconnect_button" id="disconnect_button">Disconnect_button</button>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
-      var socket = io.connect()
-      socket.on('status', (data) => {
-        console.log(data)
+
+      $('#connect_button').click(() => {
+        let socket = io.connect('ws://localhost:4606')
+        socket.on('status', (data) => {
+          console.log(data)
+        })
+        $('#disconnect_button').click(() => {
+          socket.disconnect()
+          console.log("Disconnected from the client side")
+        })
+        socket.on('connect', () => {
+          console.log("Connected from the client side")
+        })
+        socket.on('get-color', data => {
+          console.log(data)
+        })
       })
     </script>
   </body>

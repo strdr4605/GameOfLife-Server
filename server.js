@@ -25,7 +25,7 @@ io.on('connection', (socket) => {
     io.to('faf').emit('getTargets', gameData.getTargets())
   }, 1000)
 
-  socket.emit('get-color', { color: gameData.getRandomColor() })
+  socket.emit('get-color', { color: gameData.getRandomColor(Object.keys(gameData.getClients())) })
 
   socket.on('updateClient', data => {
     gameData.updateClients(data[color], data)

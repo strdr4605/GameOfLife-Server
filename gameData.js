@@ -25,13 +25,18 @@ let bombs = {}
 // }
 
 
-function getRandomColor() {
+function getRandomColor(busyColors) {
   var letters = '0123456789ABCDEF'
   var color = '#'
   for (var i = 0; i < 6; i++ ) {
       color += letters[Math.floor(Math.random() * 16)]
   }
-  return color
+  if (busyColors.indexOf(color) == -1) {
+    return color
+  } else {
+    getRandomColor(busyColors)
+  }
+
 }
 
 function updateClients(clientColor, clientData) {

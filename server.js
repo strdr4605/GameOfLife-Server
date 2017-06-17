@@ -28,7 +28,7 @@ io.on('connection', (socket) => {
   busyColors = gameData.getClient().map( client => {
     return client.color
   })
-  socket.emit('get-color', { color: gameData.getRandomColor(busyColors) })
+  socket.emit('getColor', { color: gameData.getRandomColor(busyColors) })
 
   socket.on('updateClient', data => {
     gameData.updateClients(data)

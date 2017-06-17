@@ -1,28 +1,6 @@
-let clients = {}
-
-// clients = {
-//   color: {
-//     color: '#cccccc',
-//     position: {
-//       x: 0,
-//       y: 0
-//     },
-//     life: 0
-//   }
-// }
-
+let clients = []
 let targets = []
-let bombs = {}
-
-// bombs = {
-//  color {
-//     position: {
-//       x: 0,
-//       y: 0
-//     },
-//     time: 0
-//   }
-// }
+let bombs = []
 
 
 function getRandomColor(busyColors) {
@@ -39,16 +17,30 @@ function getRandomColor(busyColors) {
 
 }
 
-function updateClients(clientColor, clientData) {
-  clients[clientColor] = clientData
+function updateClients(clientData) {
+  clientColor = clientData.color
+  let getClient = clientColor => {
+    return clients.filter(function(obj) {
+      return obj.color === clientColor
+    })
+    clients.splice(clients.indexOf(getClient), 1)
+    clients.push(clientData)
+  }
 }
 
 function updateTargets(newTargets) {
   targets = newTargets
 }
 
-function updateBombs(clientColor, bombData) {
-  bombs[clientColor] = bombData
+function updateBombs(bombData) {
+  bombColor = bombData.color
+  let getBomb = bombColor => {
+    return bombs.filter(function(obj) {
+      return obj.color === bombColor
+    })
+    bombs.splice(bombs.indexOf(getBomb), 1)
+    bombs.push(bombData)
+  }
 }
 
 function getClients() {
@@ -59,8 +51,8 @@ function getTargets() {
   return targets
 }
 
-function getBombs(clientId, bombData) {
-  return bombs
+function getBombs(clientColor) {
+  return bombs.filter(bomb => bomb.color != clientColor)
 }
 
 module.exports = {

@@ -23,9 +23,9 @@ function updateClients(clientData) {
     return clients.filter(function(obj) {
       return obj.color === clientColor
     })
-    clients.splice(clients.indexOf(getClient), 1)
-    clients.push(clientData)
   }
+  clients.splice(clients.indexOf(getClient), 1)
+  clients.push(clientData)
 }
 
 function updateTargets(newTargets) {

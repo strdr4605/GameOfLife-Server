@@ -51,8 +51,8 @@ function getTargets() {
   return targets
 }
 
-function getBombs(clientColor) {
-  return bombs.filter(bomb => bomb.color != clientColor)
+function getBombs() {
+  return bombs
 }
 
 module.exports = {

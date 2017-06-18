@@ -23,14 +23,16 @@ io.on('connection', (socket) => {
     io.to('faf').emit('getClients', gameData.getClients())
     io.to('faf').emit('getBombs', gameData.getBombs())
     io.to('faf').emit('getTargets', gameData.getTargets())
-  }, 1000)
+  }, 500)
 
-  busyColors = gameData.getClient().map( client => {
+  busyColors = gameData.getClients().map( client => {
     return client.color
   })
-  socket.emit('getColor', { color: gameData.getRandomColor(busyColors) })
+  // socket.emit('getColor', { color: gameData.getRandomColor(busyColors) })
+  let color = gameData.getRandomColor(busyColors)
 
   socket.on('updateClient', data => {
+    data['color'] = color
     gameData.updateClients(data)
   })
 

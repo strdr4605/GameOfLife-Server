@@ -23,7 +23,10 @@
         socket.on('connect', () => {
           console.log("Connected from the client side")
         })
-        socket.on('get-color', data => {
+        socket.on('getClients', data => {
+          console.log(data)
+        })
+        socket.on('getColor', data => {
           console.log(data)
         })
       })
